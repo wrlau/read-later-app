@@ -1,5 +1,6 @@
 <h1>Welcome to Read Later!</h1>
 
+<h3>Categories</h3>
 <ul>
   <% @categories.each do |category| %>
     <li><%= link_to category.name, category_path(category.id) %></li>
