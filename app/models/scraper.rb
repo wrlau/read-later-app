@@ -26,4 +26,12 @@ class Scraper
     end
   end
 
-end
+  def scrape_subcategories_and_articles
+    require 'open-uri'
+    doc = Nokogiri::HTML(open("#{@category.url}"))
+    subcategories = doc.css('a.subnav-link')
+      #first subcategory = doc.css('a.subnav-link')[0].text.strip
+      #first subcategory link = doc.css('a.subnav-link')[0]['href']
+    end
+
+  end
