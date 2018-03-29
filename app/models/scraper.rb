@@ -12,16 +12,17 @@ class Scraper
     #puts category.css('a')[0]['href']
   #end
 
-  def self.scrape_categories
+  def scrape_categories
+    require 'open-uri'
     doc = Nokogiri::HTML(open("https://www.theguardian.com/us"))
     categories = doc.css('li.pillars__item')
   end
 
-  def self.make_categories
-    self.scrape_categories.each do |category|
+  def make_categories
+    scrape_categories.each do |category|
       name = category.css('a').text.strip
       url = category.css('a')[0]['href']
-      Category.new(name, url)
+      Category.create(name: name, url: url)
     end
   end
 
