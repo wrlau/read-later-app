@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :scrape_guardian
 
+  def scrape_subcategories
+    Scraper.new.make_subcategories unless Subcategory.count > 1
+  end
+  helper_method :scrape_subcategories
+
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || root_path
   end

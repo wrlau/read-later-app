@@ -12,6 +12,10 @@ class Scraper
     #puts category.css('a')[0]['href']
   #end
 
+  #subcategories
+  #first subcategory name = doc.css('a.subnav-link')[0].text.strip
+  #first subcategory link = doc.css('a.subnav-link')[0]['href']
+
   def scrape_categories
     require 'open-uri'
     doc = Nokogiri::HTML(open("https://www.theguardian.com/us"))
@@ -26,12 +30,19 @@ class Scraper
     end
   end
 
-  def scrape_subcategories_and_articles
+  def scrape_subcategories
     require 'open-uri'
     doc = Nokogiri::HTML(open("#{@category.url}"))
-    subcategories = doc.css('a.subnav-link')
-      #first subcategory = doc.css('a.subnav-link')[0].text.strip
-      #first subcategory link = doc.css('a.subnav-link')[0]['href']
-    end
-
+    binding.pry
   end
+
+  def make_subcategories
+    scrape_subcategories.each do |subcategory|
+      name = doc.css('a.subnav-link')[0].text.strip
+      url = doc.css('a.subnav-link')[0]['href']
+      binding.pry
+      Subcategory.create(name: name, url: url)
+    end
+  end
+
+end
