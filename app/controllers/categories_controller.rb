@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    scrape_subcategories
+    scrape_subcategories(@category.url)
   end
 
 end

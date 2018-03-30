@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :scrape_guardian
 
-  def scrape_subcategories
-    Scraper.new.make_subcategories unless Subcategory.count > 1
+  def scrape_subcategories(url)
+    Scraper.new.make_subcategories(url) unless Subcategory.count > 1
   end
   helper_method :scrape_subcategories
 
