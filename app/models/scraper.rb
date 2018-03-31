@@ -31,13 +31,13 @@ class Scraper
     end
   end
 
-  def make_subcategories(url)
-    doc = Nokogiri::HTML(open("#{url}"))
-    subcategories = doc.css('a.subnav-link')
+  def self.make_subcategories(category)
+    doc = Nokogiri::HTML(open("#{category.url}"))
+    subcategories = doc.css('header').css('a.subnav-link')
     subcategories.each do |subcategory|
-      name = subcategory.css([0]).text.strip
+      name = subcategory.text.strip
       url = subcategory['href']
-      Subcategory.create(name: name, url: url)
+      category.subcategories << Subcategory.create(name: name, url: url)
     end
   end
 

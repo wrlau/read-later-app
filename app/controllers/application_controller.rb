@@ -2,12 +2,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def scrape_guardian
-    Scraper.new.make_categories unless Category.count > 1
+    Scraper.new.make_categories unless Category.count > 0
   end
   helper_method :scrape_guardian
 
-  def scrape_subcategories(url)
-    Scraper.new.make_subcategories(url) unless Subcategory.count > 1
+  def scrape_subcategories(category)
+    #binding.pry
+    Scraper.make_subcategories(category) if category.subcategories.count == 0
   end
   helper_method :scrape_subcategories
 
