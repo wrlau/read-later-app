@@ -1,1 +1,7 @@
 <h1><%= @subcategory.name %></h1>
+
+<ul>
+  <% @subcategory.articles.each do |article| %>
+    <li><%= link_to article.name %></li>
+  <% end %>
+</ul>

@@ -45,4 +45,14 @@ class Scraper
     end
   end
 
+  def self.make_articles(subcategory)
+    doc = Nokogiri::HTML(open("#{subcategory.url}"))
+    articles = doc.css('div.headline-list__text')
+    articles.each do |article|
+      name = article.text.strip
+      url = article.css('a')[0]['href']
+      subcategory.articles << Article.create(name: name, url: url, category: subcategory.category)
+    end
+  end
+
 end

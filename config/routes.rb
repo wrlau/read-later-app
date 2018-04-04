@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :reading_lists
   resources :articles
   resources :categories, only: [:index, :show] do
-    resources :subcategories, only: [:show] 
+    resources :subcategories, only: [:show]
   end
 
 
