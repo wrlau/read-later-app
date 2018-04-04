@@ -18,6 +18,10 @@ class Scraper
   #first subcategory name = doc.css('a.subnav-link')[0].text.strip
   #first subcategory link = doc.css('a.subnav-link')[0]['href']
 
+  #articles - doc = open subcategories url, articles = doc.css('div.headline-list__text')
+  #first article name = articles[0].text.strip
+  #first article link = articles[0].css('a')[0]['href']
+
   def scrape_categories
     doc = Nokogiri::HTML(open("https://www.theguardian.com/us"))
     categories = doc.css('li.pillars__item')
