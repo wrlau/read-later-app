@@ -53,6 +53,7 @@ class Scraper
       url = article.css('a')[0]['href']
       subcategory.articles << Article.create(name: name, url: url, category: subcategory.category)
     end
+    #binding.pry
   end
 
 end

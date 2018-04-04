@@ -2,6 +2,6 @@
 
 <ul>
   <% @subcategory.articles.each do |article| %>
-    <li><%= link_to article.name %></li>
+    <li><%= link_to article.name, article_path(article.id) %></li>
   <% end %>
 </ul>
