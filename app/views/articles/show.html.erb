@@ -2,10 +2,12 @@
 <p><%= link_to @article.url, @article.url %></p>
 
 <% if current_user %>
+<h3>Select a Reading List:</h3>
   <%= form_for @article do |f| %>
-    <%= f.label "Create a Reading List" %>
-    <%= f.text_field :reading_list_name %>
+    <%= f.collection_select :reading_list_id, current_user.reading_lists.all, :id, :name %>
 
     <%= f.submit "Save to Reading List" %>
   <% end %>
 <% end %>
+
+<%= params.inspect %>

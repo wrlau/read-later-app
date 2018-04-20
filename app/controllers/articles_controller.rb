@@ -9,17 +9,13 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-    @article.update(article_params)
+    #binding.pry
+    reading_list = current_user.reading_lists.find(params[:article][:reading_list_id])
+    reading_list.articles << @article
     if @article.save
-      redirect_to article_path(@article)
+      redirect_to reading_list_path(reading_list)
     else
       render :show
     end
-  end
-
-  private
-  
-  def article_params
-    params.require(:article).permit(:reading_list_name)
   end
 end

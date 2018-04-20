@@ -12,6 +12,9 @@ class ReadingListsController < ApplicationController
     @reading_list = ReadingList.create(reading_list_params)
   end
 
+  def update
+  end
+
   def show
     @reading_list = ReadingList.find(params[:id])
   end
