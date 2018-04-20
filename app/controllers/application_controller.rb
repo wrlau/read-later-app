@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+  
   def scrape_guardian
     Scraper.new.make_categories unless Category.count > 0
   end

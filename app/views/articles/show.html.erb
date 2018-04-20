@@ -1,1 +1,11 @@
 <h1><%= @article.name %></h1>
+<p><%= link_to @article.url, @article.url %></p>
+
+<% if current_user %>
+  <%= form_for @article do |f| %>
+    <%= f.label "Create a Reading List" %>
+    <%= f.text_field :reading_list_name %>
+
+    <%= f.submit "Save to Reading List" %>
+  <% end %>
+<% end %>
