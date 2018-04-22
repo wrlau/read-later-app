@@ -9,3 +9,5 @@
     <li><%= link_to reading_list.name, reading_list_path(reading_list.id) %></li>
   <% end %>
 </ul>
+
+<%= button_to "Create a Reading List", new_reading_list_path %>
