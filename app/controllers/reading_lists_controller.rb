@@ -10,7 +10,12 @@ class ReadingListsController < ApplicationController
 
   def create
     #binding.pry
-    @reading_list = ReadingList.create(name: params[:reading_list][:name], user_id: current_user.id)
+    @reading_list = ReadingList.new(name: params[:reading_list][:name], user_id: current_user.id)
+    if @reading_list.save
+      redirect_to reading_list_path(@reading_list)
+    else
+      render :new
+    end
   end
 
   def update
