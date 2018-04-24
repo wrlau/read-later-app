@@ -1,7 +1,11 @@
 <h1><%= @subcategory.name %></h1>
 
-<ul>
-  <% @subcategory.articles.each do |article| %>
-    <li><%= link_to article.name, article_path(article.id) %></li>
-  <% end %>
-</ul>
+<% if @subcategory.articles.count == 0 %>
+  <p>Sorry, please try again later!</p>
+<% else %>
+  <ul>
+    <% @subcategory.articles.each do |article| %>
+      <li><%= link_to article.name, article_path(article.id) %></li>
+    <% end %>
+  </ul>
+<% end %>
