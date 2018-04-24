@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :require_login, except: :show
 
   def show
     @article = Article.find(params[:id])
@@ -24,4 +25,12 @@ class ArticlesController < ApplicationController
       render :show
     end
   end
+
+  private
+    def require_login
+      unless user_signed_in?
+        flash[:error] = "You must be logged in to save"
+        redirect_to new_user_session_path
+      end
+    end
 end
