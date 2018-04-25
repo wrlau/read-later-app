@@ -1,5 +1,10 @@
 <h1><%= @reading_list.name %></h1>
 
+<% if @reading_list.articles.count < 1 %>
+  <p><i>This list is currently empty...</i></p><br>
+  <%= link_to "Browse Articles", root_path %>
+<% end %>
+
 <ul>
   <% @reading_list.articles.each do |article| %>
     <li><%= link_to article.name, article_path(article.id) %></li>
