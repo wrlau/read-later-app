@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :reading_lists
   post 'reading_lists/new' => 'reading_lists#new'
+  post 'reading_lists/:id/edit' => 'reading_lists#edit'
   delete 'reading_lists/:id' => 'reading_lists#destroy'
   patch 'articles/:id' => 'articles#update'
   resources :articles

@@ -18,11 +18,18 @@ class ReadingListsController < ApplicationController
     end
   end
 
-  def update
-  end
-
   def show
     @reading_list = ReadingList.find(params[:id])
+  end
+
+  def edit
+    @reading_list = ReadingList.find(params[:id])
+  end
+
+  def update
+    @reading_list = ReadingList.find(params[:id])
+    @reading_list.update(name: params[:reading_list][:name])
+    redirect_to reading_list_path(@reading_list)
   end
 
   def destroy
