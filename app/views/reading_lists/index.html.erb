@@ -1,6 +1,6 @@
 <% if current_user.reading_lists.count > 1 %>
   <h1>Your Reading List(s)</h1>
-<% else %>
+<% elsif current_user.reading_lists.count == 1 %>
   <h1>Your Reading List</h1>
 <% end %>
 
