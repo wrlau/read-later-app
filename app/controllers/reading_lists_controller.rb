@@ -25,6 +25,11 @@ class ReadingListsController < ApplicationController
     @reading_list = ReadingList.find(params[:id])
   end
 
+  def destroy
+    ReadingList.find(params[:id]).destroy
+    redirect_to reading_lists_path
+  end
+
   private
 =begin
   def reading_list_params

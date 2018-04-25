@@ -5,3 +5,5 @@
     <li><%= link_to article.name, article_path(article.id) %></li>
   <% end %>
 </ul>
+
+<%= button_to "Delete Reading List", {:controller => :reading_lists, :action => 'destroy', :id => @reading_list.id }, :method => :delete %>
