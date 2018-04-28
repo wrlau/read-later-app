@@ -38,11 +38,7 @@ class ReadingListsController < ApplicationController
   end
 
   private
-=begin
-  def reading_list_params
-    params.require(:reading_list).permit(:name)
-  end
-=end
+
   def require_login
     unless user_signed_in?
       flash[:error] = "You must be logged in to save"
