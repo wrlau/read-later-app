@@ -1,18 +1,3 @@
-<h1>Create a Reading List</h1>
+<h1>Edit Reading List</h1>
 
-<%= form_for @reading_list do |f| %>
-  <% if @reading_list.errors.any? %>
-    <div id="error_explanation">
-      <p>Sorry, please try again:</p>
-
-      <ul>
-      <% @reading_list.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-<% end %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
-<% end %>
+<%= render 'form' %>
