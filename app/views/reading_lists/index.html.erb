@@ -6,8 +6,8 @@
 
 <ul>
   <% current_user.reading_lists.each do |reading_list| %>
-    <li><%= link_to reading_list.name, reading_list_path(reading_list.id) %></li>
+    <li><%= link_to reading_list.name, user_reading_list_path(current_user.id, reading_list.id) %></li>
   <% end %>
 </ul>
 
-<%= button_to "Create a Reading List", new_reading_list_path %>
+<%= button_to "Create a Reading List", new_user_reading_list_path(current_user.id) %>

@@ -1,4 +1,4 @@
-<%= form_for @reading_list do |f| %>
+<%= form_for [current_user, @reading_list] do |f| %>
   <% if @reading_list.errors.any? %>
     <div id="error_explanation">
       <p>Sorry, please try again:</p>

@@ -10,9 +10,9 @@ class ReadingListsController < ApplicationController
 
   def create
     #binding.pry
-    @reading_list = ReadingList.new(name: params[:reading_list][:name], user_id: current_user.id)
+    @reading_list = ReadingList.create(name: params[:reading_list][:name], user_id: current_user.id)
     if @reading_list.save
-      redirect_to reading_list_path(@reading_list)
+      redirect_to user_reading_list_path(current_user.id, @reading_list)
     else
       render :new
     end
@@ -29,12 +29,12 @@ class ReadingListsController < ApplicationController
   def update
     @reading_list = ReadingList.find(params[:id])
     @reading_list.update(name: params[:reading_list][:name])
-    redirect_to reading_list_path(@reading_list)
+    redirect_to user_reading_list_path(current_user.id, @reading_list)
   end
 
   def destroy
     ReadingList.find(params[:id]).destroy
-    redirect_to reading_lists_path
+    redirect_to user_reading_lists_path
   end
 
   private

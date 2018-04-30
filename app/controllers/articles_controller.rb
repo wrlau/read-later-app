@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
     end
 
     if @article.save
-      redirect_to reading_list_path(reading_list)
+      redirect_to user_reading_list_path(current_user.id, reading_list.id)
     else
       render :show
     end

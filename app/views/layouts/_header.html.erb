@@ -1,7 +1,7 @@
 <ul>
   <% if current_user && current_user.reading_lists %>
     <li><%= link_to "Home", root_path %></li>
-    <li><%= link_to "Your Reading List(s)", reading_lists_path(current_user.reading_lists) %></li>
+    <li><%= link_to "Your Reading List(s)", user_reading_lists_path(current_user.reading_lists) %></li>
   <% end%>
   <%= render 'layouts/sign_in' %>
 </ul>
