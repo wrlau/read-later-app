@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'reading_lists/:id/edit' => 'reading_lists#edit'
   delete 'reading_lists/:id' => 'reading_lists#destroy'
   patch 'articles/:id' => 'articles#update'
-  resources :articles
+  resources :articles, only: [:show, :edit, :update]
   resources :categories, only: [:index, :show] do
     resources :subcategories, only: [:show]
   end
