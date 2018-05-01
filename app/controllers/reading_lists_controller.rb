@@ -1,5 +1,6 @@
 class ReadingListsController < ApplicationController
   before_action :require_login
+  before_action :set_reading_list, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -10,7 +11,7 @@ class ReadingListsController < ApplicationController
 
   def create
     #binding.pry
-    @reading_list = ReadingList.create(name: params[:reading_list][:name], user_id: current_user.id)
+    @reading_list = current_user.reading_lists.create(reading_list_params)
     if @reading_list.save
       redirect_to user_reading_list_path(current_user.id, @reading_list)
     else
@@ -19,25 +20,30 @@ class ReadingListsController < ApplicationController
   end
 
   def show
-    @reading_list = ReadingList.find(params[:id])
   end
 
   def edit
-    @reading_list = ReadingList.find(params[:id])
   end
 
   def update
-    @reading_list = ReadingList.find(params[:id])
-    @reading_list.update(name: params[:reading_list][:name])
+    @reading_list.update(reading_list_params)
     redirect_to user_reading_list_path(current_user.id, @reading_list)
   end
 
   def destroy
-    ReadingList.find(params[:id]).destroy
+    @reading_list.destroy
     redirect_to user_reading_lists_path
   end
 
   private
+
+  def reading_list_params
+    params.require(:reading_list).permit(:name, :user_id)
+  end
+
+  def set_reading_list
+    @reading_list = ReadingList.find(params[:id])
+  end
 
   def require_login
     unless user_signed_in?
