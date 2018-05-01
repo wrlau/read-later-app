@@ -1,16 +1,14 @@
 class ArticlesController < ApplicationController
   before_action :require_login, except: :show
+  before_action :set_article, only: [:show, :edit, :update]
 
   def show
-    @article = Article.find(params[:id])
   end
 
   def edit
   end
 
   def update
-    @article = Article.find(params[:id])
-
     if params[:article][:reading_list_id]
       reading_list = current_user.reading_lists.find_by(id: params[:article][:reading_list_id])
       reading_list.articles << @article
@@ -28,6 +26,14 @@ class ArticlesController < ApplicationController
 
   private
 
+  def set_article
+    @article = Article.find(params[:id])
+  end
+=begin
+  def article_params
+    params.require(:article).permit(:reading_list_id, reading_list_attributes: [:name])
+  end
+=end
   def require_login
     unless user_signed_in?
       flash[:error] = "You must be logged in to save"
