@@ -2,28 +2,28 @@
 <p><%= link_to @article.url, @article.url %></p>
 
 <% if current_user %>
-<h3>Select a Reading List, or Enter a Name to Create a New List:</h3>
-  <%= form_for @article do |f| %>
-    <% if @article.errors.any? %>
-      <div id="error_explanation">
-        <p>Sorry, please try again:</p>
-
-        <ul>
-        <% @article.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <%= f.collection_select :reading_list_id, current_user.reading_lists.all, :id, :name %>
-
-    <%= f.fields_for :reading_list, @article.build_reading_list do |reading_list_field| %>
-      <%= reading_list_field.text_field :name %>
+  <h3>Select a Reading List, or Enter a Name to Create a New List:</h3>
+    <%= form_for @article do |f| %>
+      <% if @article.errors.any? %>
+        <div id="error_explanation">
+          <p>Sorry, please try again:</p>
+          <ul>
+            <% @article.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
 
-    <%= f.submit "Save to Reading List" %>
-  <% end %>
+      <%= f.collection_select :reading_list_id, current_user.reading_lists.all, :id, :name, {:include_blank => true} %>
+      <%= f.fields_for :reading_list do |reading_list_field| %>
+        <%= reading_list_field.text_field :name %>
+        <% end %>
+
+      <%= f.submit "Save to Reading List" %>
+    <% end %>
+<% else %>
+  <%= button_to "Save", edit_article_path, method: "get" %><br>
 <% end %>
 
 <%= link_to "<- Back", category_subcategory_path(@article.category_id, @article.subcategory_id) %>
