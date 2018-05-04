@@ -1,24 +1,19 @@
-# README
+# Read Later
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Ruby on Rails v5 web application that enables users to save articles onto virtual reading lists, with article information scraped from The Guardian website (US edition).
 
-Things you may want to cover:
+Articles are organized by category and subcategory, and are saved onto lists with a title and url.
 
-* Ruby version
+Any user can browse articles, but only those with login credentials have the ability to save.
 
-* System dependencies
+## Usage
 
-* Configuration
+To use, clone, run: `bundle install`, `rails db:migrate` and then start up the server with: `rails s`.
 
-* Database creation
+## Contributing
 
-* Database initialization
+Bug reports and pull requests are welcome on Github at https://github.com/wlau903/read-later-app. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://www.contributor-covenant.org/) code of conduct.
 
-* How to run the test suite
+## License
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The application is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
