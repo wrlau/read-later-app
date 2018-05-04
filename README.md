@@ -4,7 +4,7 @@ This is a Ruby on Rails v5 web application that enables users to save articles o
 
 Articles are organized by category and subcategory, and are saved onto lists with a title and url.
 
-Any user can browse articles, but only those with login credentials have the ability to save.
+Any user can browse articles, but only those with login credentials have the ability to save. Users can create accounts through the application or login via Google. 
 
 ## Usage
 
