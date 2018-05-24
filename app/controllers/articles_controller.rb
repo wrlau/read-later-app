@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update]
 
   def show
-    @article.build_reading_list
+    #@article.build_reading_list
   end
 
   def edit
