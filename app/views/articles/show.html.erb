@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
 <h1><%= @article.name %></h1>
 <p><%= link_to @article.url, @article.url %></p>
 
@@ -14,16 +18,20 @@
           </ul>
         </div>
       <% end %>
+        <%= f.collection_select :reading_list_id, current_user.reading_lists.all, :id, :name, {:include_blank => "Select List"} %>
+        <%= f.fields_for :reading_list, @article.build_reading_list do |reading_list_field| %>
+          <%= reading_list_field.text_field :name, placeholder: "or, New List Name: " %>
+          <% end %>
 
-      <%= f.collection_select :reading_list_id, current_user.reading_lists.all, :id, :name, {:include_blank => true} %>
-      <%= f.fields_for :reading_list, @article.build_reading_list do |reading_list_field| %>
-        <%= reading_list_field.text_field :name %>
-        <% end %>
+          <%= f.submit "Save to Reading List" %>
+      <h3>Rate this Article:</h3>
+        <%= f.select :rating, [['bad', 1], ['poor', 2], ['mediocre', 3], ['good', 4], ['great', 5]], {:include_blank => "Select Rating"} %>
 
-      <%= f.submit "Save to Reading List" %>
+        <%= f.submit "Rate Article" %>
     <% end %>
 <% else %>
-  <%= button_to "Save", edit_article_path, method: "get" %><br>
-<% end %>
+      <%= button_to "Save", edit_article_path, method: "get" %><br>
+  <% end %>
+
 
 <%= link_to "<- Back", category_subcategory_path(@article.category_id, @article.subcategory_id) %>
