@@ -1,0 +1,9 @@
+<h1>Profile Page</h1>
+
+<h3>Articles You Rated:</h3>
+
+<ul>
+  <% Article.where[0..5].each do |article| %>
+    <li><%= link_to article.name, article_path(article.id) %></li>
+  <% end %>
+</ul>
