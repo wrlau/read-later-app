@@ -26,6 +26,7 @@
           <%= f.submit "Save to Reading List" %>
       <h3>Rate this Article:</h3>
         <%= f.select :rating, [['bad', 1], ['poor', 2], ['mediocre', 3], ['good', 4], ['great', 5]], {:include_blank => "Select Rating"} %>
+        <%= f.hidden_field :rating_user, :value => current_user.id %>
 
         <%= f.submit "Rate Article" %>
     <% end %>
