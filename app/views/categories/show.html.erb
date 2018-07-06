@@ -2,8 +2,10 @@
 
 <ul>
   <% @category.subcategories.each do |subcategory| %>
-    <li><%= link_to subcategory.name, category_subcategory_path(@category.id, subcategory.id) %></li>
+    <li class="js-more" data-category-id="<%= @category.id %>" data-subcategory-id="<%= subcategory.id %>"><%= link_to subcategory.name, category_subcategory_path(@category.id, subcategory.id) %></li>
+    <div id="subcategory-<%= subcategory.id %>"></div>
   <% end %>
 </ul>
 
 <%= link_to "<- Back", root_path %>
+<%= javascript_include_tag "categories" %>
