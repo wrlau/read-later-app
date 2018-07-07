@@ -5,10 +5,10 @@ $(".js-more").on("click", function(event) {
   var subcategoryId = this.dataset.subcategoryId;
   $.get("/categories/" + categoryId + "/subcategories/" + subcategoryId + ".json", function(data) {
       console.log(data);
-      var articles = data["articles"]; //returns an array of article objects, add in links to article serializer?
+      var articles = data["articles"]; //returns an array of article objects
       var newArticleList = "<ul>"
       for (var i = 0; i < articles.length; i++) {
-        newArticleList += "<li>" + articles[i]["name"] + "</li>"
+        newArticleList += "<li><a href="+ '/articles/' + articles[i]["id"]+ ">"+ articles[i]["name"] + "</a></li>"
       };
       newArticleList += "</ul>"
       $("#subcategory-" + subcategoryId).html(newArticleList);
