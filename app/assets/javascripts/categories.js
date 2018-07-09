@@ -1,5 +1,4 @@
 $(".js-more").on("click", function(event) {
-  alert("Stop right there!");
   event.preventDefault();
   var categoryId = this.dataset.categoryId;
   var subcategoryId = this.dataset.subcategoryId;
