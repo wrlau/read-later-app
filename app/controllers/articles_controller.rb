@@ -4,6 +4,10 @@ class ArticlesController < ApplicationController
 
   def show
     #@article.build_reading_list
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @article }
+    end
   end
 
   def edit
