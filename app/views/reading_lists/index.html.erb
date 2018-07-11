@@ -10,4 +10,6 @@
   <% end %>
 </ul>
 
-<%= button_to "Create a Reading List", new_user_reading_list_path(current_user.id) %>
+<!--<%= button_to "Create a Reading List", new_user_reading_list_path(current_user.id) %> -->
+<button type="submit" name="button">Create a Reading List</button>
+<%= javascript_include_tag "reading_lists" %>
