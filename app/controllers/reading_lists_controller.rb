@@ -7,13 +7,14 @@ class ReadingListsController < ApplicationController
 
   def new
     @reading_list = ReadingList.new
+    render :layout => false
   end
 
   def create
     #binding.pry
     @reading_list = current_user.reading_lists.create(reading_list_params)
     if @reading_list.save
-      redirect_to user_reading_list_path(current_user.id, @reading_list)
+      render json: @reading_list, status: 201
     else
       render :new
     end
