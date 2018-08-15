@@ -1,13 +1,11 @@
 $("button").on("click", function(event) {
     event.preventDefault();
-    alert("You clicked!!");
 
     var $button = $(this);
     var url = $button.data("url");
 
     //ajax call for loading create reading list partial
     $.get(url, function(response) {
-      alert("you got the form!");
 
       //parse string response (form header and actual form) into an array of DOM nodes
       var html = $.parseHTML(response)
@@ -17,7 +15,6 @@ $("button").on("click", function(event) {
       var form = html[2];
       //hijack form submit event
       $(form).submit(function(event) {
-        alert("you submitted the form!");
         event.preventDefault();
 
         var values = $(this).serialize();
@@ -25,11 +22,24 @@ $("button").on("click", function(event) {
         var posting = $.post(this.action, values);
         //append new list onto the dom
         posting.done(function(data) {
-          let newList = "<li><a href=" + `${this.url}/` + data["id"] + ">" + data["name"] + "</a></li>";
+          let newReadingList = new ReadingList(data);
+          let listName = newReadingList.displayNewList();
+          let insertnewList = "<li><a href=" + `${this.url}/` + data["id"] + ">" + listName + "</a></li>";
           let getLists = $(".reading_lists");
-          getLists.append(newList);
+          getLists.append(insertnewList);
           $(html).html(""); //clear new reading list form
         })
       })
     })
 })
+
+function ReadingList(data) {
+  this.id = data.id
+  this.name = data.name
+  this.user = data.user
+}
+
+ReadingList.prototype.displayNewList = function() {
+  let listName = this.name;
+  return listName
+}
