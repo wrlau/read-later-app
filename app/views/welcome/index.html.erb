@@ -1,11 +1,6 @@
 <h1>Welcome to Read Later!</h1>
 
-<h3>Categories</h3>
-<ul>
-  <% @categories.each do |category| %>
-    <li><%= link_to category.name, category_path(category.id) %></li>
-  <% end %>
-</ul>
+<button type="submit" name="button" data-url="/categories.json">Click to Start</button>
 
 <h3>Most Saved Articles</h3>
 <ul>
@@ -13,3 +8,4 @@
     <li><%= link_to article.name, article_path(article.id) %></li>
   <% end %>
 </ul>
+<%= javascript_include_tag "categories" %>
