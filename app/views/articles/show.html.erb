@@ -1,5 +1,5 @@
-<h1><%= @article.name %></h1>
-<p><%= link_to @article.url, @article.url %></p>
+<h1 class="articleName"><%= @article.name %></h1>
+<p><a href="<%= @article.url %>" class="articleUrl">Click here to read</a></p>
 
 <% if current_user %>
   <h3>Select a Reading List, or Enter a Name to Create a New List:</h3>
@@ -27,3 +27,5 @@
 <% end %>
 
 <%= link_to "<- Back", category_subcategory_path(@article.category_id, @article.subcategory_id) %>
+<a href="#" class="js-next" data-id="<%= @article.id %>">Next Article -></a>
+<%= javascript_include_tag "articles" %>
